@@ -1,25 +1,26 @@
-import {
-  configureStore,
-  combineReducers,
-  Reducer,
-  AnyAction,
-} from "@reduxjs/toolkit";
-import appReducer from "./appStore";
+import { create } from "zustand";
+import { servicesStore } from "./servicesStore";
+import { IStore } from "@/interfaces/store";
+import { eventTypesStore } from "./eventTypesStore";
+import { usersStore } from "./usersStore";
+import { subscriptionsStore } from "./subscriptionsStore";
+import { messagesStore } from "./messagesStore";
 
-const allReducers = combineReducers({
-  app: appReducer,
+const useStore = create<IStore>()((set, get) => {
+  const toPass = {
+    get,
+    set,
+  };
+
+  const state = {
+    services: servicesStore(toPass),
+    users: usersStore(toPass),
+    subscriptions: subscriptionsStore(toPass),
+    eventTypes: eventTypesStore(toPass),
+    messages: messagesStore(toPass),
+  };
+
+  return state;
 });
 
-const rootReducer: Reducer<RootState> = (
-  state: RootState | undefined,
-  action: AnyAction
-) => {
-  return allReducers(state, action);
-};
-
-export const store = configureStore({
-  reducer: rootReducer,
-});
-
-export type RootState = ReturnType<typeof allReducers>;
-export type AppDispatch = typeof store.dispatch;
+export { useStore };
