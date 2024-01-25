@@ -1,9 +1,14 @@
-import Home from "@/pages/home";
+import Home from "@/pages";
+import Dashboard from "@/pages/dashboard";
 
 const routes = [
   {
-    path: "",
+    path: "/",
     element: <Home />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 ];
 
