@@ -1,8 +1,8 @@
 import WebPlug from "webplug";
 
 const webplug = new WebPlug({
-  apiKey: "VjSRxh0PFV2PLlh5ZHzJr2gPQO8jVG3xaT10MLlW",
-  url: "https://548x2cznhi.execute-api.us-east-1.amazonaws.com/v1",
+  apiKey: process.env.REACT_APP_API_KEY!,
+  url: process.env.REACT_APP_API_URL!,
 });
 
 export default webplug;
