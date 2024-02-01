@@ -63,7 +63,10 @@ export default function ServiceSwitcher() {
             "w-[200px] justify-between bg-transparent hover:bg-transparent text-white hover:text-white opacity-90"
           )}
         >
-          {selectedService?.name}
+          {selectedService
+            ? services.find((service) => service.name === selectedService.name)
+                ?.name
+            : "Select Service..."}
           <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 text-white" />
         </Button>
       </PopoverTrigger>
